@@ -1,0 +1,10 @@
+package com.my.jpaTest.repository;
+
+import com.my.jpaTest.entity.Users;
+import org.hibernate.query.criteria.JpaCoalesce;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UsersRepository extends JpaRepository<Users, Long> {
+
+
+}

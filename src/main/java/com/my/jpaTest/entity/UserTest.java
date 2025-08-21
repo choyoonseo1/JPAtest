@@ -9,14 +9,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
-// 테스트코드작성단축키 : Ctrl + Shift + T
+// 테스트 코드 작성 단축키 : Ctrl + Shift + T
 
 @Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-// BaseEntity의 toString을 호출
+// BaesEntity의 ToString 호출
 @ToString(callSuper = true)
 public class UserTest extends BaseEntity{
     @Id
