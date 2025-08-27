@@ -1,6 +1,7 @@
 package com.my.jpaTest.service;
 
 import com.my.jpaTest.entity.Member;
+import com.my.jpaTest.entity.Parent;
 import com.my.jpaTest.entity.Team;
 import jakarta.persistence.EntityManager;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,5 +63,16 @@ class RelationTestServiceTest {
         for (Member m : members){
             System.out.println(m.getName());
         }
+    }
+    @Test
+    @DisplayName("영속성전이테스트")
+    void persistTest(){
+        relationTestService.saveChildren();
+    }
+
+    @Test
+    @DisplayName("부모삭제테스트 - 자식과 함께")
+    void deleteParent(){
+        relationTestService.deleteParent();
     }
 }

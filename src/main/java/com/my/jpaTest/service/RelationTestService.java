@@ -1,6 +1,8 @@
 package com.my.jpaTest.service;
 
+import com.my.jpaTest.entity.Child;
 import com.my.jpaTest.entity.Member;
+import com.my.jpaTest.entity.Parent;
 import com.my.jpaTest.entity.Team;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -27,7 +29,7 @@ public class RelationTestService {
                 .team(team)
                 .build();
         em.persist(member);
-}
+    }
 
     public void insertBothRelation() {
         // 씨름팀
@@ -58,5 +60,26 @@ public class RelationTestService {
         ssirum.getMemberList().add(lee);
         ssirum.getMemberList().add(kang);
         //DirtyChecking persist 하지 않아도 이미 값을 가지고 있다.
+    }
+
+    public void saveChildren() {
+        // 자식 생성
+        Child c1 = new Child();
+        Child c2 = new Child();
+        // 부모 생성
+        Parent p = new Parent();
+        // 자식에 부모 할당
+        c1.setParent(p);
+        c2.setParent(p);
+        // 부모의 자식리스트 만들기
+        p.getChildren().add(c1);
+        p.getChildren().add(c2);
+        // 부모를 저장 > 자식도 따라 저장됨
+        // Cascade > Persist 로 설정되어있기때문
+        em.persist(p);
+    }
+    public void deleteParent() {
+        Parent p = em.find(Parent.class, "1L");
+        em.remove(p);
     }
 }
