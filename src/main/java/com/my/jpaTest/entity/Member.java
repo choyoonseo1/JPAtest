@@ -1,16 +1,15 @@
 package com.my.jpaTest.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
+
 //Many
 public class Member {
     @Id
@@ -22,4 +21,13 @@ public class Member {
     @JoinColumn(name = "teamId")
     // Team의 private String teamId;을 가리킨다.
     private Team team;
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "memberId='" + memberId + '\'' +
+                ", name='" + name + '\'' +
+                ", team=" + team.getTeamName() +
+                '}';
+    }
 }
